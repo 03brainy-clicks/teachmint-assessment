@@ -1,0 +1,68 @@
+### Task 1: Setup and Structure
+- **Objective:** Set up the basic structure of the application.
+
+1. Create a new React.js project.
+2. Set up the necessary project structure, including components, styles, and assets.
+
+### Task 2: Pizza Order Form
+- **Objective:** Create a form for placing pizza orders.
+
+1. Design a form with fields for configuring a pizza order (Types, Size, Base).
+2. Add validation for the form to ensure all required fields are filled.
+3. Create a submit button to place the pizza order.
+
+### Task 3: Order Limit Check
+- **Objective:** Implement a limit on the number of orders the restaurant can handle.
+
+1. Allow only a maximum of 10 orders to be placed at a time.
+2. Display a message if the order limit is reached.
+
+### Task 4: Pizza Stages Implementation
+- **Objective:** Implement the stages of pizza orders.
+
+1. Create a data structure to represent the stages (Order Placed, Order in Making, Order Ready, Order Picked).
+2. Display each pizza with its current stage.
+3. Highlight pizzas that are in the same stage for more than 3 minutes with red color.
+
+### Task 5: Time Tracking
+- **Objective:** Track and display time spent in each stage.
+
+1. Implement a timer for each pizza to track the time spent in each stage.
+2. Display the time spent in each stage on the pizza card.
+
+### Task 6: Main Display Section
+- **Objective:** Create a main display section for all pizzas in progress.
+
+1. Display all pizzas in progress with their remaining time and order ID.
+2. Show the total number of pizzas delivered today.
+
+### Task 7: Order Actions
+- **Objective:** Implement actions for each pizza order.
+
+1. Allow orders to be canceled at any time before reaching the "Ready" stage.
+2. Manually move pizzas from one stage to another using buttons (next, picked, cancel).
+
+### Bonus Tasks:
+1. **Sort Orders Based on Delay:**
+    - Sort the orders based on delays in each stage.
+
+2. **Different Making Time for Pizza Sizes:**
+    - Implement different making times for pizza sizes.
+    - Change the red color indication based on the time delay.
+
+3. **Use Redux:**
+    - Integrate Redux for state management.
+
+### Task 8: Testing
+- **Objective:** Test the application thoroughly to ensure functionality and responsiveness.
+
+1. Test each component for correct behavior.
+2. Verify that the application is responsive and works well on different screen sizes.
+
+### Task 9: Documentation
+- **Objective:** Provide documentation for the codebase.
+
+1. Document the code to explain the logic and functionality.
+2. Include instructions on how to run the application.
+
+This structured approach should help you tackle the frontend task effectively.
