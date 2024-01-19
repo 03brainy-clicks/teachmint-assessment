@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import Navigation from "./components/Navigation";
 import Stage from "./pages/Stage";
 import Orders from "./pages/Orders";
-import Landing from "./pages/Landing";
 
 const App = () => {
   return (
@@ -12,7 +11,6 @@ const App = () => {
         <div className="w-screen h-screen bg-white bg-opacity-90 flex flex-col overflow-hidden ">
           <Navigation />
           <Routes>
-            <Route path="/" element={<Landing />} />
             <Route path="/home" element={<Home />} />
             <Route path="/stage" element={<Stage />} />
             <Route path="/orders" element={<Orders />} />
