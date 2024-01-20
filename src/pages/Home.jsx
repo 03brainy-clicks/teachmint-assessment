@@ -61,7 +61,7 @@ const Home = () => {
           <img src={Pizza} alt="" className="w-64 mx-auto" />
         </div>
         <div className="space-y-4">
-          <p className="text-lg text-pizza-500 font-medium">
+          <p className="text-lg text-pizza-600 font-medium">
             Select a perfect pizza by adding to cart
           </p>
           {/* Dropdowns for selecting pizza options */}

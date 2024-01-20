@@ -9,10 +9,8 @@ const StageCard = ({ order, next }) => {
 
   // Function to handle the "Next" button click
   const handleNext = () => {
-    // Dispatch an action to update the order status
     dispatch(updateOrderStatus({ orderId: order.id, newStatus: next }));
 
-    // If the next status is "ready", update the order end time
     if (next === "ready") {
       dispatch(
         updateOrderEndTime({
