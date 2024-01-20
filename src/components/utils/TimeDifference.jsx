@@ -1,9 +1,11 @@
 const TimeDifference = ({ startTimestamp, endTimestamp }) => {
+  // Function to calculate duration and format it
   const calculateDurationAndFormat = (startTimestamp, endTimestamp) => {
     const durationInMilliseconds = endTimestamp - startTimestamp;
     return formatMilliseconds(durationInMilliseconds);
   };
 
+  // Function to format milliseconds into human-readable format
   const formatMilliseconds = (durationInMilliseconds) => {
     const seconds = Math.floor((durationInMilliseconds / 1000) % 60);
     const minutes = Math.floor((durationInMilliseconds / (1000 * 60)) % 60);
@@ -23,11 +25,13 @@ const TimeDifference = ({ startTimestamp, endTimestamp }) => {
     return formattedTime.join(" ");
   };
 
+  // Calculate and format the duration
   const formattedDuration = calculateDurationAndFormat(
     startTimestamp,
     endTimestamp
   );
 
+  // Render the formatted duration
   return <span>{formattedDuration}</span>;
 };
 

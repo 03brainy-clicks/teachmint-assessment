@@ -7,23 +7,28 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navigation = () => {
+  // State to track active menu item and mobile menu state
   const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
 
+  // Array of menu items
   const menuItems = ["home", "orders", "stage"];
 
+  // Function to toggle mobile menu
   const handleOpen = () => {
     setOpen(!open);
   };
 
   return (
-    <div className=" w-screen ">
-      <div className="w-11/12  py-5 mx-auto flex  items-center justify-between">
+    <div className="w-screen">
+      <div className="w-11/12 py-5 mx-auto flex items-center justify-between">
+        {/* Logo */}
         <div className="logo flex-1">
           <h2 className="text-3xl text-pizza-600 font-bold">PizzaPapa</h2>
         </div>
 
-        <ul className=" flex-1 text-sm text-gray-600 md:flex gap-5 items-center justify-center hidden">
+        {/* Desktop Menu */}
+        <ul className="flex-1 text-sm text-gray-600 md:flex gap-5 items-center justify-center hidden">
           {menuItems.map((item) => (
             <li
               key={item}
@@ -41,6 +46,7 @@ const Navigation = () => {
           ))}
         </ul>
 
+        {/* Shopping Cart Icon (Desktop) */}
         <div className="md:flex flex-1 items-center gap-5 justify-end hidden">
           <Link to={"/orders"}>
             <ShoppingCartIcon
@@ -50,6 +56,7 @@ const Navigation = () => {
           </Link>
         </div>
 
+        {/* Mobile Menu Icon */}
         <div className="flex flex-1 items-center gap-5 justify-end md:hidden">
           <Bars3BottomLeftIcon
             onClick={handleOpen}
@@ -57,14 +64,17 @@ const Navigation = () => {
           />
         </div>
 
+        {/* Mobile Menu */}
         {open && (
           <div className="fixed top-0 left-0 w-screen p-7 bg-white h-screen animate flex items-center justify-center z-50">
+            {/* Close Icon */}
             <XMarkIcon
               onClick={handleOpen}
               className="hover:text-red-600 text-gray-500 w-6 h-6 cursor-pointer ml-auto absolute top-7 right-7"
             />
 
-            <ul className=" flex-1 text-sm text-gray-600 flex flex-col gap-5 items-center justify-center ">
+            {/* Mobile Menu Items */}
+            <ul className="flex-1 text-sm text-gray-600 flex flex-col gap-5 items-center justify-center">
               {menuItems.map((item) => (
                 <li
                   key={item}

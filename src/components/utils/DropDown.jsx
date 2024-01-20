@@ -1,18 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 
 const DropDown = ({ options, onSelect, select, placeholder }) => {
+  // State to track whether the dropdown is open or closed
   const [open, setOpen] = useState(false);
+
+  // Reference for the dropdown container to handle outside clicks
   const dropdownRef = useRef(null);
 
+  // Effect to handle outside clicks and close the dropdown
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleOutsideClick);
-
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
@@ -26,6 +28,7 @@ const DropDown = ({ options, onSelect, select, placeholder }) => {
       >
         {select ? select : placeholder}
       </button>
+
       {open && (
         <div className="absolute top-9 bg-white p-1 w-full border space-y-1 rounded-sm z-10">
           {options.map((item) => (

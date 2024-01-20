@@ -1,99 +1,124 @@
+# PizzaPapa Documentation
 
-# Pizza Shop Application Documentation
+Welcome to the PizzaPapa documentation! This guide provides information on the architecture, features, usage, and license for the PizzaPapa web application.
 
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Getting Started](#getting-started)
-3. [Project Structure](#project-structure)
-4. [Pizza Order Form](#pizza-order-form)
-5. [Order Limit Check](#order-limit-check)
-6. [Pizza Stages Implementation](#pizza-stages-implementation)
-7. [Time Tracking](#time-tracking)
-8. [Main Display Section](#main-display-section)
-9. [Order Actions](#order-actions)
-10. [Bonus Features](#bonus-features)
-11. [Testing](#testing)
-12. [Technologies Used](#technologies-used)
-13. [Contributing](#contributing)
-14. [License](#license)
+2. [Folder Structure](#folder-structure)
+3. [Features](#features)
+4. [Usage](#usage)
+5. [Dependencies](#dependencies)
+6. [Configuration](#configuration)
+7. [License](#license)
 
 ## Overview
 
-This React.js application simulates a pizza restaurant's behavior. It provides a user interface to place pizza orders, tracks the progress of each order through different stages, and displays relevant information such as time spent and order status.
+PizzaPapa is a web application designed to streamline the pizza ordering process and provide a real-time tracking system for users. The application allows users to place pizza orders and track their status through different stages, such as "Order Placed," "Order Making," "Order Ready," and "Order Picked."
 
-## Getting Started
+## Folder Structure
 
-To run the application locally, follow these steps:
+The project follows a structured folder organization for better code maintainability:
 
-1. Clone the repository: `git clone [repository_url]`
-2. Navigate to the project directory: `cd pizza-shop-app`
-3. Install dependencies: `npm install`
-4. Start the development server: `npm start`
-5. Open your browser and go to [http://localhost:3000](http://localhost:3000)
+```plaintext
+pizza-papa/
+|-- public/
+|-- src/
+|   |-- assets/
+|   |-- components/
+|       |-- utils/
+|   |-- pages/
+|   |-- slices/
+|   |-- store/
+|   |-- styles/
+|   |-- App.jsx
+|   |-- index.css
+|   |-- index.js
+|-- .gitignore
+|-- package.json
+|-- README.md
+|-- ... (other configuration files)
+```
 
-## Project Structure
+For detailed information on each directory, please refer to the [Folder Structure](#folder-structure) section in the README.
 
-The project follows a modular structure to enhance maintainability and readability. Key directories include:
+## Features
 
-- `src/components`: Contains React components.
-- `src/styles`: Holds styling files.
-- `public`: Includes static assets.
+1. **Order Placement:**
 
-## Pizza Order Form
+   - Users can place pizza orders by selecting pizza type, size, and base.
+   - Input validation ensures a valid pizza configuration.
 
-The pizza order form allows users to configure and place pizza orders. It includes fields for selecting pizza type (Veg, Non-Veg), size (Large, Medium, Small), and base (Thin, Thick). Validation ensures all required fields are filled before submission.
+2. **Order Tracking:**
 
-## Order Limit Check
+   - Orders move through different stages: "Order Placed," "Order Making," "Order Ready," "Order Picked."
+   - Each stage has a visual representation on the Stage page.
 
-The application enforces a maximum order limit of 10. If this limit is reached, a message is displayed, and further orders are restricted until the restaurant can handle more.
+3. **Navigation:**
 
-## Pizza Stages Implementation
+   - Navigation bar for easy access to Home, Orders, and Stage pages.
+   - Responsive design for both desktop and mobile.
 
-Orders progress through stages: Order Placed, Order in Making, Order Ready, and Order Picked. Pizzas in the same stage for over 3 minutes are highlighted in red.
+4. **Redux State Management:**
 
-## Time Tracking
+   - Redux store with slices to manage application state.
 
-Each pizza order has a timer that tracks the time spent in each stage. This information is displayed on the pizza card.
+5. **Time Tracking:**
+   - TimeDifference component to calculate and display the time duration between order stages.
 
-## Main Display Section
+For more details on the features, please refer to the [Features](#features) section in the README.
 
-The main display section shows all pizzas in progress, including their remaining time and order ID. It also provides a count of total pizzas delivered today.
+## Usage
 
-## Order Actions
+1. **Clone the Repository:**
 
-Users can cancel orders at any stage before reaching the "Ready" stage. Buttons allow manual movement of pizzas to the next stage, marking them as picked, or canceling the order.
+   ```bash
+   git clone https://github.com/your-username/pizza-papa.git
+   ```
 
-## Bonus Features
+2. **Install Dependencies:**
 
-1. **Sort Orders Based on Delay:**
-    - Orders are sorted based on delays in each stage.
-    
-2. **Different Making Time for Pizza Sizes:**
-    - Pizza sizes have different making times: 3 min (Small), 4 min (Medium), 5 min (Large).
+   ```bash
+   cd pizza-papa
+   npm install
+   ```
 
-3. **Redux Integration:**
-    - State management is handled using Redux.
+3. **Run the Application:**
 
-## Testing
+   ```bash
+   npm start
+   ```
 
-The application has been thoroughly tested to ensure correct functionality and responsiveness on various screen sizes.
+4. **Open in Browser:**
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Technologies Used
+For detailed instructions on usage, please refer to the [Usage](#usage) section in the README.
 
-- Vite (React + JavaScript)
-- Redux
-- HTML/CSS
-- JavaScript
+## Dependencies
 
-## Contributing
+- [React](https://reactjs.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [React Router](https://reactrouter.com/)
 
-Contributions are welcome! If you have ideas for improvements or find any issues, please open an issue or submit a pull request.
+For a complete list of dependencies and versions, please refer to the [package.json](/package.json) file.
+
+## Configuration
+
+PizzaPapa requires minimal configuration. The primary configurations include:
+
+- Redux store setup in the [store](/src/store) directory.
+- Routing configurations in the [App.jsx](/src/App.jsx) file.
+
+For more details on configuration, please refer to the [Configuration](#configuration) section in the README.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+PizzaPapa is licensed under the [MIT License](LICENSE).
+
+For more details on the license, please refer to the [License](#license) section in the README.
 
 ---
 
-Feel free to further customize the documentation based on your specific project details and requirements.
+Thank you for choosing PizzaPapa! If you have any questions or need further assistance, feel free to reach out.
+
+Happy coding!

@@ -19,8 +19,8 @@ const Orders = () => {
             0{orders.filter((item) => item.status === "picked").length}
           </span>
         </span>
-        <div className="overflow-x-auto  py-3 ">
-          <table className="w-full table-fixed border border-pizza-600 h-full rounded-sm  min-w-[40rem]">
+        <div className="overflow-x-auto py-3">
+          <table className="w-full table-fixed border border-pizza-600 h-full rounded-sm min-w-[40rem]">
             <thead className="text-left text-sm font-medium text-pizza-600 border border-pizza-600">
               <tr>
                 <th className="px-4 py-2">Orders</th>
@@ -30,27 +30,38 @@ const Orders = () => {
               </tr>
             </thead>
             <tbody className="text-sm space-y-3 text-gray-600">
-              {orders.map((order) => (
-                <tr key={order.id}>
-                  <td className="line-clamp-1 px-4 py-2 ">
-                    Order-{order.id.slice(0, 6)}
-                  </td>
-                  <td className="px-4 py-2 uppercase">{order.status}</td>
-                  <td className="px-4 py-2">{order.endTime ? <TimeDifference startTimestamp={order.startTime}  endTimestamp={order.endTime}/> : "In progress"}</td>
-                  <td className="px-4 py-2">
-                    {["ready", "picked"].includes(order.status) ? (
-                      ""
-                    ) : (
-                      <button
-                        onClick={() => handleCancelOrder(order.id)}
-                        className="bg-red-600 hover:bg-red-500 p-2 px-5 text-xs text-white rounded-sm outline-none animate"
-                      >
-                        Cancel
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))}
+              {orders.map((order) => {
+                const isCancelAllowed = !["ready", "picked"].includes(order.status);
+
+                return (
+                  <tr key={order.id}>
+                    <td className="line-clamp-1 px-4 py-2 uppercase mt-1">
+                      Order-{order.id.slice(0, 6)}
+                    </td>
+                    <td className="px-4 py-2 uppercase">{order.status}</td>
+                    <td className="px-4 py-2">
+                      {order.endTime ? (
+                        <TimeDifference
+                          startTimestamp={order.startTime}
+                          endTimestamp={order.endTime}
+                        />
+                      ) : (
+                        "In progress"
+                      )}
+                    </td>
+                    <td className="px-4 py-2">
+                      {isCancelAllowed && (
+                        <button
+                          onClick={() => handleCancelOrder(order.id)}
+                          className="bg-red-600 hover:bg-red-500 p-2 px-5 text-xs text-white rounded-sm outline-none transition-colors duration-300"
+                        >
+                          Cancel
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
