@@ -15,9 +15,9 @@ const Landing = () => {
             </div>
           </Link>
 
-          {/* Use Link for GitHub link */}
-          <Link
-            to="https://github.com/03brainy-clicks/teachmint-assessment"
+          {/* Use a regular anchor tag for an external link (GitHub repo) */}
+          <a
+            href="https://github.com/03brainy-clicks/teachmint-assessment"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full block flex-1"
@@ -25,7 +25,7 @@ const Landing = () => {
             <div className="w-full transition duration-300 cursor-pointer flex-1 py-2 px-5 text-xs font-medium border border-pizza-600 text-pizza-600 rounded flex gap-1 items-center justify-center">
               Repo
             </div>
-          </Link>
+          </a>
         </div>
       </div>
     </div>

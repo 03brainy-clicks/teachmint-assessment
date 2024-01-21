@@ -15,9 +15,9 @@ const TimeDifference = ({ startTimestamp, endTimestamp }) => {
       formatUnit(minutes, 'min'),
       formatUnit(seconds, 'sec'),
     ]
-    // Filter out empty values and join them into a string
-    .filter(Boolean)
-    .join(' ');
+      // Filter out empty values and join them into a string
+      .filter(Boolean)
+      .join(' ');
 
     // If formatted time is empty, default to '0 sec'
     return formattedTime || '0 sec';

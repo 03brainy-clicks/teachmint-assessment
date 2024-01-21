@@ -12,6 +12,8 @@ const Home = () => {
   const [pizzaSize, setPizzaSize] = useState(false);
   const [pizzaBase, setPizzaBase] = useState(false);
   const [error, setError] = useState(false);
+
+  // Get the length of active orders
   const ordersLength = useSelector((state) => state.orders.orders).filter(
     (item) => item.status !== "ready" && item.status !== "picked"
   ).length;
@@ -35,7 +37,8 @@ const Home = () => {
   const handleOrder = (e) => {
     e.preventDefault();
     setError(false);
-    // Check if all pizza options are selected
+
+    // Check if all pizza options are selected and orders are less than 10
     if (pizzaBase && pizzaSize && pizzaType && ordersLength <= 9) {
       const newOrder = {
         type: pizzaType,
@@ -47,8 +50,12 @@ const Home = () => {
         status: "order",
         id: uuidv4(),
       };
+
+      // Dispatch action to add a new order
       dispatch(addOrder(newOrder));
       handleReset();
+
+      // Display success toast
       toast("🍕 Order generated", {
         style: {
           background: "#ffffff",

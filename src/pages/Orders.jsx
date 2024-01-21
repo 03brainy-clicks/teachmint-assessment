@@ -8,7 +8,10 @@ const Orders = () => {
   const dispatch = useDispatch();
 
   const handleCancelOrder = (orderId) => {
+    // Dispatch action to cancel the order
     dispatch(cancelOrder(orderId));
+
+    // Display a toast notification for order cancellation
     toast("Order cancelled", {
       style: {
         background: "#ffffff",
@@ -54,6 +57,7 @@ const Orders = () => {
                     <td className="px-4 py-2 uppercase">{order.status}</td>
                     <td className="px-4 py-2">
                       {order.endTime ? (
+                        // Render TimeDifference component for completed orders
                         <TimeDifference
                           startTimestamp={order.startTime}
                           endTimestamp={order.endTime}
@@ -64,6 +68,7 @@ const Orders = () => {
                     </td>
                     <td className="px-4 py-2">
                       {isCancelAllowed && (
+                        // Render Cancel button for applicable orders
                         <button
                           onClick={() => handleCancelOrder(order.id)}
                           className="bg-red-600 hover:bg-red-500 p-2 px-5 text-xs text-white rounded-sm outline-none transition-colors duration-300"

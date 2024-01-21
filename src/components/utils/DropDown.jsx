@@ -14,7 +14,11 @@ const DropDown = ({ options, onSelect, select, placeholder }) => {
         setOpen(false);
       }
     };
+
+    // Add event listener on mount
     document.addEventListener("mousedown", handleOutsideClick);
+
+    // Remove event listener on unmount to prevent memory leaks
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
@@ -22,6 +26,7 @@ const DropDown = ({ options, onSelect, select, placeholder }) => {
 
   return (
     <div className="relative rounded-sm" ref={dropdownRef}>
+      {/* Dropdown button */}
       <button
         onClick={() => setOpen(!open)}
         className="p-2 w-full bg-white text-xs font-medium border border-orange-600 text-orange-600 rounded-sm outline-none"
@@ -29,13 +34,14 @@ const DropDown = ({ options, onSelect, select, placeholder }) => {
         {select ? select : placeholder}
       </button>
 
+      {/* Dropdown content */}
       {open && (
         <div className="absolute top-9 bg-white p-1 w-full border space-y-1 rounded-sm z-10">
           {options.map((item) => (
             <div
               onClick={() => {
                 onSelect(item);
-                setOpen(!open);
+                setOpen(false);
               }}
               className="p-1 text-xs rounded-sm hover:bg-pizza-100 cursor-pointer animate"
               key={item}

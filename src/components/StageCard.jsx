@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import {
   updateOrderEndTime,
@@ -10,9 +10,20 @@ import StopWatch from "./utils/StopWatch";
 
 const StageCard = ({ order, next }) => {
   const dispatch = useDispatch();
+
+  // Use the custom stopwatch hook
   const { totalTime, stopStopwatch } = useStopWatch(order.elapsedTime);
+
+  // Callback to handle the "Next" button click
   const handleNext = useCallback(() => {
+    // Stop the stopwatch if the status is "picked"
+    if (next === "picked") {
+      stopStopwatch();
+    }
+
+    // Dispatch actions to update order status, end time, and elapsed time
     dispatch(updateOrderStatus({ orderId: order.id, newStatus: next }));
+
     if (next === "ready") {
       dispatch(
         updateOrderEndTime({
@@ -21,13 +32,14 @@ const StageCard = ({ order, next }) => {
         })
       );
     }
+
     dispatch(
       updateOrderElapsedTime({
         orderId: order.id,
         newElapsedTime: new Date().getTime(),
       })
     );
-  }, [dispatch, order.id, next]);
+  }, [dispatch, order.id, next, stopStopwatch]);
 
   return (
     <div
@@ -44,14 +56,17 @@ const StageCard = ({ order, next }) => {
         {order.status === "picked" ? (
           <span> PICKED</span>
         ) : (
+          // Render the StopWatch component
           <>
             <StopWatch startTime={order.elapsedTime} status={order.status} />
           </>
         )}
       </p>
       {order.status === "picked" ? (
+        // Display nothing for "picked" orders
         ""
       ) : (
+        // Render the "Next" button
         <button
           onClick={handleNext}
           className={`${

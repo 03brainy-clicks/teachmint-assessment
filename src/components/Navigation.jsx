@@ -73,20 +73,17 @@ const Navigation = () => {
             {/* Mobile Menu Items */}
             <ul className="flex-1 text-sm text-gray-600 flex flex-col gap-5 items-center justify-center">
               {menuItems.map((item) => (
-                <>
-                  <Link to={`/${item}`}>
-                    <li
-                      key={item}
-                      className={`menu ${
-                        path.includes(item)
-                          ? "text-pizza-600 border-pizza-600"
-                          : "border-transparent"
-                      }`}
-                    >
-                      {item.charAt(0).toUpperCase() + item.slice(1)}
-                    </li>
-                  </Link>
-                </>
+                <Link key={item} to={`/${item}`}>
+                  <li
+                    className={`menu ${
+                      path.includes(item)
+                        ? "text-pizza-600 border-pizza-600"
+                        : "border-transparent"
+                    }`}
+                  >
+                    {item.charAt(0).toUpperCase() + item.slice(1)}
+                  </li>
+                </Link>
               ))}
             </ul>
           </div>
