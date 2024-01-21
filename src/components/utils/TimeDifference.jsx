@@ -1,35 +1,30 @@
 const TimeDifference = ({ startTimestamp, endTimestamp }) => {
-  // Function to calculate duration and format it
-  const calculateDurationAndFormat = (startTimestamp, endTimestamp) => {
-    const durationInMilliseconds = endTimestamp - startTimestamp;
-    return formatMilliseconds(durationInMilliseconds);
-  };
-
   // Function to format milliseconds into human-readable format
-  const formatMilliseconds = (durationInMilliseconds) => {
-    const seconds = Math.floor((durationInMilliseconds / 1000) % 60);
-    const minutes = Math.floor((durationInMilliseconds / (1000 * 60)) % 60);
-    const hours = Math.floor((durationInMilliseconds / (1000 * 60 * 60)) % 24);
+  const formatMilliseconds = (duration) => {
+    // Helper function to format a unit (hours, minutes, seconds)
+    const formatUnit = (value, unit) => (value > 0 ? `${value} ${unit}` : '');
 
-    const formattedTime = [];
-    if (hours > 0) {
-      formattedTime.push(`${hours} hr`);
-    }
-    if (minutes > 0) {
-      formattedTime.push(`${minutes} min`);
-    }
-    if (seconds > 0 || formattedTime.length === 0) {
-      formattedTime.push(`${seconds} sec`);
-    }
+    // Calculate seconds, minutes, and hours
+    const seconds = Math.floor((duration / 1000) % 60);
+    const minutes = Math.floor((duration / (1000 * 60)) % 60);
+    const hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-    return formattedTime.join(" ");
+    // Create an array with formatted time units
+    const formattedTime = [
+      formatUnit(hours, 'hr'),
+      formatUnit(minutes, 'min'),
+      formatUnit(seconds, 'sec'),
+    ]
+    // Filter out empty values and join them into a string
+    .filter(Boolean)
+    .join(' ');
+
+    // If formatted time is empty, default to '0 sec'
+    return formattedTime || '0 sec';
   };
 
   // Calculate and format the duration
-  const formattedDuration = calculateDurationAndFormat(
-    startTimestamp,
-    endTimestamp
-  );
+  const formattedDuration = formatMilliseconds(endTimestamp - startTimestamp);
 
   // Render the formatted duration
   return <span>{formattedDuration}</span>;

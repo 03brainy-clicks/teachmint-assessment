@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { cancelOrder } from "../store/slices/orderSlice";
 import TimeDifference from "../components/utils/TimeDifference";
+import { toast } from "react-toastify";
 
 const Orders = () => {
   const orders = useSelector((state) => state.orders.orders);
@@ -8,6 +9,16 @@ const Orders = () => {
 
   const handleCancelOrder = (orderId) => {
     dispatch(cancelOrder(orderId));
+    toast("Order cancelled", {
+      style: {
+        background: "#ffffff",
+        color: "#dc2626",
+        border: "solid 1px #dc2626",
+        borderRadius: "2px",
+      },
+      hideProgressBar: true,
+      autoClose: 2000,
+    });
   };
 
   return (
@@ -31,7 +42,9 @@ const Orders = () => {
             </thead>
             <tbody className="text-sm space-y-3 text-gray-600">
               {orders.map((order) => {
-                const isCancelAllowed = !["ready", "picked"].includes(order.status);
+                const isCancelAllowed = !["ready", "picked"].includes(
+                  order.status
+                );
 
                 return (
                   <tr key={order.id}>

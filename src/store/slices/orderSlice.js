@@ -41,6 +41,16 @@ const orderSlice = createSlice({
         orderToUpdate.endTime = newEndTime;
       }
     },
+
+    // Reducer to update the elapsed time of an order based on its ID
+    updateOrderElapsedTime: (state, action) => {
+      const { orderId, newElapsedTime } = action.payload;
+      const orderToUpdate = state.orders.find((order) => order.id === orderId);
+
+      if (orderToUpdate) {
+        orderToUpdate.elapsedTime = newElapsedTime;
+      }
+    },
   },
 });
 
@@ -50,6 +60,7 @@ export const {
   cancelOrder,
   updateOrderStatus,
   updateOrderEndTime,
+  updateOrderElapsedTime,
 } = orderSlice.actions;
 
 // Export the reducer for use in the Redux store

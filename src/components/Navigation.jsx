@@ -5,10 +5,11 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Navigation = () => {
   // State to track active menu item and mobile menu state
-  const [active, setActive] = useState("home");
+  const path = useLocation().pathname;
   const [open, setOpen] = useState(false);
 
   // Array of menu items
@@ -32,9 +33,8 @@ const Navigation = () => {
           {menuItems.map((item) => (
             <li
               key={item}
-              onClick={() => setActive(item)}
               className={`menu ${
-                active === item
+                path.includes(item)
                   ? "text-pizza-600 border-pizza-600"
                   : "border-transparent"
               }`}
@@ -49,10 +49,7 @@ const Navigation = () => {
         {/* Shopping Cart Icon (Desktop) */}
         <div className="md:flex flex-1 items-center gap-5 justify-end hidden">
           <Link to={"/orders"}>
-            <ShoppingCartIcon
-              onClick={() => setActive("orders")}
-              className="text-pizza-600 w-6 h-6 cursor-pointer"
-            />
+            <ShoppingCartIcon className="text-pizza-600 w-6 h-6 cursor-pointer" />
           </Link>
         </div>
 
@@ -76,22 +73,20 @@ const Navigation = () => {
             {/* Mobile Menu Items */}
             <ul className="flex-1 text-sm text-gray-600 flex flex-col gap-5 items-center justify-center">
               {menuItems.map((item) => (
-                <li
-                  key={item}
-                  onClick={() => {
-                    setActive(item);
-                    handleOpen();
-                  }}
-                  className={`menu ${
-                    active === item
-                      ? "text-pizza-600 border-pizza-600"
-                      : "border-transparent"
-                  }`}
-                >
+                <>
                   <Link to={`/${item}`}>
-                    {item.charAt(0).toUpperCase() + item.slice(1)}
+                    <li
+                      key={item}
+                      className={`menu ${
+                        path.includes(item)
+                          ? "text-pizza-600 border-pizza-600"
+                          : "border-transparent"
+                      }`}
+                    >
+                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                    </li>
                   </Link>
-                </li>
+                </>
               ))}
             </ul>
           </div>
