@@ -74,7 +74,7 @@ const Navigation = () => {
             <ul className="flex-1 text-sm text-gray-600 flex flex-col gap-5 items-center justify-center">
               {menuItems.map((item) => (
                 <Link key={item} to={`/${item}`}>
-                  <li
+                  <li onClick={handleOpen}
                     className={`menu ${
                       path.includes(item)
                         ? "text-pizza-600 border-pizza-600"
